@@ -63,55 +63,86 @@ spring-mvc-demo/
 
 ### pom.xml :
 
+```
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <groupId>com.example</groupId>
-    <artifactId>spring-mvc-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>Spring MVC Demo</name>
+	<modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.2</version>
-    </parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>4.1.1</version>
+		<relativePath/>
+	</parent>
 
-    <dependencies>
-        <!-- Spring Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+	<groupId>com.example</groupId>
+	<artifactId>spring-mvc</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
-        <!-- Thymeleaf for View Rendering -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-    </dependencies>
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
+```
 
-### MvcApplication.java (Main Class):
+### SpringMvcApplication.java (Main Class):
 
-package com.example.mvc;
+```
+package com.example.spring_mvc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MvcApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(MvcApplication.class, args);
-    }
+public class SpringMvcApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringMvcApplication.class, args);
+	}
+
 }
+```
 
 ### HomeController.java (Controller):
-
-package com.example.mvc;
+```
+package com.example.spring_mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -122,23 +153,43 @@ public class HomeController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("message", "Welcome to Spring Boot MVC!");
-        return "index";  // refers to index.html in templates folder
+
+        model.addAttribute("message",
+                "Welcome to Spring Boot MVC!");
+
+        return "index";
     }
 }
-### index.html (View – inside src/main/resources/templates/):
+```
 
+### index.html (View – inside src/main/resources/templates/):
+```
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Spring MVC</title>
 </head>
 <body>
-    <h1 th:text="${message}">Default Message</h1>
+
+<h1 th:text="${message}">
+    Default Message
+</h1>
+
 </body>
 </html>
+```
 
 ### application.properties:
- server.port=8081
+```
+server.port=8081
+```
+
+ ### Output:
+<img width="1535" height="817" alt="image" src="https://github.com/user-attachments/assets/c100e1a3-4962-4c1b-b6bb-24412a2d65eb" />
+
+
+ ### Result:
+ Hence Simple Spring Boot MVC is successfully created
+
 
 
